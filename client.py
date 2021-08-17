@@ -96,3 +96,9 @@ class Client:
 
         if data != 'ok\n\n':
             raise ClientError('Server returns an error')
+
+    def close(self) -> None:
+        try:
+            self._socket.close()
+        except socket.error as err:
+            raise ClientError("Error occurs while closing connection", err)
